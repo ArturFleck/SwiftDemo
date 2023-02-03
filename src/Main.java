@@ -32,7 +32,7 @@ public class Main {
         textField3 = new JTextField();
         textField3.setColumns(23);
         textField3.setText("directory");
-        textField3.setBounds(40, 130, 150, 20);
+        textField3.setBounds(40, 130, 315, 20);
         textField3.setEnabled(false);
 
         JLabel label, label1;
@@ -47,8 +47,8 @@ public class Main {
         button1.setToolTipText("This is the text");
         button1.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 
-        button2 = new JButton("Choose directory");
-        button2.setBounds(270, 130, 100, 20);
+        button2 = new JButton("Choose dir...");
+        button2.setBounds(370, 130, 100, 20);
         button2.setFocusable(false);
         button2.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 
@@ -114,10 +114,11 @@ public class Main {
         button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getActionCommand().equals("Choose directory")) {
+                if (e.getActionCommand().equals("Choose dir...")) {
 
                     JFileChooser chooser = new JFileChooser();
-                    chooser.setCurrentDirectory(new java.io.File("."));
+                    //chooser.setCurrentDirectory(new java.io.File("."));
+                    chooser.setCurrentDirectory(new java.io.File(textField3.getText()));
                     chooser.setDialogTitle("choosertitle");
                     chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                     chooser.setAcceptAllFileFilterUsed(false);
@@ -126,7 +127,7 @@ public class Main {
                         System.out.println("getCurrentDirectory(): " + chooser.getCurrentDirectory());
                         System.out.println("getSelectedFile() : " + chooser.getSelectedFile());
                         textField3.setText(String.valueOf(chooser.getSelectedFile()));
-                        textField3.setEnabled(true);
+                        checkbox1.setSelected(true);
                     } else {
                         System.out.println("Nothing was Selected");
                     }
